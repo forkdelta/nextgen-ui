@@ -1,9 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-class App extends Component {
-  render() {
-    return <div/>;
-  }
+function App({ websocket }) {
+  return <div>{websocket.status}</div>;
 }
 
-export default App;
+function mapStateToProps(state) {
+  const { websocket } = state;
+  return { websocket };
+}
+
+export default connect(mapStateToProps)(App);
