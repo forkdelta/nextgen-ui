@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Navbar from './components/app/Navbar';
 import { TICKER_UPDATE_INTERVAL } from './config';
 import { fetchTickerIfNeeded } from './store/actions';
 
@@ -31,8 +32,11 @@ class App extends Component {
     const { ticker, websocket } = this.props;
     return (
       <div>
-        <p>{websocket.status}</p>
-        <p>{JSON.stringify(ticker)}</p>
+        <Navbar />
+        <div id="content">
+          <p>{websocket.status}</p>
+          <p>{JSON.stringify(ticker)}</p>
+        </div>
       </div>
     );
   }

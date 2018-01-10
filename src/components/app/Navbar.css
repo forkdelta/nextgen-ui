@@ -1,0 +1,29 @@
+.pt-navbar {
+  line-height: 24px;
+}
+
+#brand-name {
+  font-size: 18px;
+}
+
+#brand-name > strong {
+  color: rgb(254, 95, 44);
+}
+
+#brand-name::before {
+  display: inline-block;
+  content: '';
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  background: url('../../images/logo-24x24.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: text-bottom;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  #brand-name::before {
+    background-image: url('../../images/logo-48x48.png');
+  }
+}

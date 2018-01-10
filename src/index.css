@@ -1,0 +1,7 @@
+@import '~@blueprintjs/core/dist/blueprint.css'; /* cf. https://github.com/palantir/blueprint/issues/123 */
+
+body {
+  min-height: 100vh;
+  margin-top: 58px;
+  background-color: #f5f8fa;
+}
