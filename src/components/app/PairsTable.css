@@ -1,0 +1,17 @@
+.pairs-popover.pt-popover .pt-popover-content {
+  border-radius: unset;
+}
+
+.pairs-popover.pt-popover .ReactTable {
+  max-height: 450px;
+  width: 500px;
+}
+
+.pairs-popover.pt-popover .ReactTable .rt-thead .rt-th {
+  padding: 10px 5px;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.pairs-popover.pt-popover .ReactTable .rt-thead .rt-th:not(.-sort-desc) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}

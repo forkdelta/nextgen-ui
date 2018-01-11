@@ -1,4 +1,5 @@
 @import '~@blueprintjs/core/dist/blueprint.css'; /* cf. https://github.com/palantir/blueprint/issues/123 */
+@import '~react-table/react-table.css';
 
 body {
   min-height: 100vh;
