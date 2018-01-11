@@ -6,6 +6,7 @@
   "dependencies": {
     "@blueprintjs/core": "^1.35.0",
     "@blueprintjs/labs": "^0.14.2",
+    "d3-format": "^1.2.2",
     "lodash": "^4.17.4",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",

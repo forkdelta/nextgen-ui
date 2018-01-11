@@ -1,54 +1,98 @@
+import { format } from 'd3-format';
 import React from 'react';
 import ReactTable from 'react-table';
 
 import './PairsTable.css';
 
-function PairsTable({ pairs, lastUpdated, style = {}, className = null }) {
+function PairsTable({
+  pairs,
+  lastUpdated,
+  onPairSelected,
+  style = {},
+  className = null,
+}) {
   return (
     <ReactTable
-      data={Object.values(pairs)}
-      minRows={10}
-      defaultSorted={DEFAULT_SORT}
       columns={COLUMNS}
+      className={`-striped -highlight ${!!className ? className : ''}`}
+      getTrProps={(state, rowInfo, column, instance) => ({
+        onClick: e => console.log('A row was clicked!', rowInfo),
+      })}
+      data={Object.values(pairs)}
       defaultPageSize={100}
+      defaultSorted={DEFAULT_SORT}
+      minRows={10}
       showPagination={false}
       style={style}
-      className={`-striped -highlight ${!!className ? className : ''}`}
     />
   );
 }
+
+const formatVolume = format('.4r'),
+  formatPrice = format('.3r'),
+  formatSpread = format('.2%'),
+  formatPercentageChange = format('+.2%');
 
 const COLUMNS = [
   {
     Header: 'Name',
     id: 'name',
-    accessor: d => d.name.replace('ETH_', ''),
-    minWidth: 75,
+    accessor: ({ tokenAddr, name }) => name || tokenAddr.slice(0, 8),
+    Cell: ({ value }) => <span title={value}>{value}</span>,
+    minWidth: 80,
   },
   {
-    Header: 'Volume',
-    id: 'baseVolume',
-    accessor: d => Math.round(100 * d.baseVolume || 0.0) / 100,
-    minWidth: 75,
+    Header: 'Volume, Ξ',
+    id: 'volume',
+    accessor: ({ baseVolume, last, quoteVolume }) =>
+      baseVolume != null && quoteVolume != null
+        ? baseVolume + quoteVolume * last
+        : null,
+    Cell: ({ value }) => (value !== null ? formatVolume(value) : ''),
+    className: 'text-center',
+    minWidth: 85,
   },
   {
     Header: 'Bid',
     accessor: 'bid',
-    minWidth: 75,
+    Cell: ({ value }) => (value != null ? formatPrice(value) : ''),
+    className: 'text-center',
+    minWidth: 120,
   },
   {
     Header: 'Ask',
     accessor: 'ask',
-    minWidth: 75,
+    Cell: ({ value }) => (value != null ? formatPrice(value) : ''),
+    className: 'text-center',
+    minWidth: 120,
+  },
+  {
+    Header: () => <abbr title="100% * (ask - bid) / ask">Spread, %</abbr>,
+    id: 'spread',
+    accessor: ({ ask, bid }) =>
+      ask != null && bid != null ? (ask - bid) / ask : null,
+    Cell: ({ value }) => (value !== null ? formatSpread(value) : ''),
+    className: 'numeric-comparable',
+    minWidth: 85,
   },
   {
     Header: 'Change',
     accessor: 'percentChange',
-    Cell: ({ value }) => <span>{value ? `${value}%` : ''}</span>,
-    minWidth: 75,
+    Cell: ({ value }) =>
+      value != null ? (
+        <span
+          title={`{value}%`}
+          className={value >= 0 ? 'positive' : 'negative'}>
+          {formatPercentageChange(value)}
+        </span>
+      ) : (
+        ''
+      ),
+    className: 'percent-change numeric-comparable',
+    minWidth: 85,
   },
 ];
 
-const DEFAULT_SORT = [{ id: 'baseVolume', desc: true }];
+const DEFAULT_SORT = [{ id: 'volume', desc: true }];
 
 export default PairsTable;
