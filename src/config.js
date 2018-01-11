@@ -12,7 +12,7 @@ const ED_WEBSOCKET =
 const ED_WEBSOCKET_TIMEOUT = 10000;
 const TICKER_UPDATE_INTERVAL = 10000,
   TICKER_INVALID_INTERVAL = 10000;
-const TOKENS_URL = '/tokens.json';
+const TOKENS_URL = `${process.env.PUBLIC_URL}/tokens.json`;
 
 export {
   DUMMY_TOKEN_ADDR,
