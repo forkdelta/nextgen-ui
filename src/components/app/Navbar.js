@@ -9,7 +9,7 @@ import PairsPopover from './PairsPopover';
 
 import './Navbar.css';
 
-function Navbar({ pairs, tickerLastUpdated, websocket }) {
+function Navbar({ pairs, tickerLastUpdated }) {
   return (
     <BlueprintNavbar className="pt-fixed-top pt-dark">
       <NavbarGroup>
@@ -20,11 +20,7 @@ function Navbar({ pairs, tickerLastUpdated, websocket }) {
       </NavbarGroup>
 
       <NavbarGroup>
-        <PairsPopover
-          pairs={pairs}
-          lastUpdated={tickerLastUpdated}
-          websocket={websocket}
-        />
+        <PairsPopover pairs={pairs} lastUpdated={tickerLastUpdated} />
       </NavbarGroup>
     </BlueprintNavbar>
   );

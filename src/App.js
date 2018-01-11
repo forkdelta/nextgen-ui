@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Navbar from './components/app/Navbar';
+import WebsocketConnectingOverlay from './components/app/WebsocketConnectingOverlay';
 import { TICKER_UPDATE_INTERVAL } from './config';
 import { fetchTickerIfNeeded, fetchTokensListIfNeeded } from './store/actions';
 
@@ -31,22 +32,21 @@ class App extends Component {
   }
 
   render() {
-    const { pairs, tickerLastUpdated, websocket } = this.props;
+    const { pairs, websocket, websocketOffline } = this.props;
     return (
       <div>
-        <Navbar
-          pairs={pairs}
-          tickerLastUpdated={tickerLastUpdated}
-          websocket={websocket}
-        />
+        <Navbar pairs={pairs} tickerLastUpdated={tickerLastUpdated} />
         <div id="content">
           <p>{websocket.status}</p>
           <p>
-            {(!!tickerLastUpdated && tickerLastUpdated.toLocaleTimeString()) ||
+            {(!!tickerLastUpdated &&
+              new Date(tickerLastUpdated.getTime()).toTimeString()) ||
               'never'}
           </p>
           <p>{JSON.stringify(pairs)}</p>
         </div>
+
+        <WebsocketConnectingOverlay isOpen={websocketOffline} />
       </div>
     );
   }
@@ -64,7 +64,16 @@ function mapStateToProps(state) {
     return memo;
   }, {});
 
-  return { pairs, ticker, tickerLastUpdated, tokens, websocket };
+  const websocketOffline = websocket.status !== 'connected';
+
+  return {
+    pairs,
+    ticker,
+    tickerLastUpdated,
+    tokens,
+    websocket,
+    websocketOffline,
+  };
 }
 
 export default connect(mapStateToProps)(App);
