@@ -32,7 +32,12 @@ class App extends Component {
   }
 
   render() {
-    const { pairs, websocket, websocketOffline } = this.props;
+    const {
+      pairs,
+      tickerLastUpdated,
+      websocket,
+      websocketOffline,
+    } = this.props;
     return (
       <div>
         <Navbar pairs={pairs} tickerLastUpdated={tickerLastUpdated} />

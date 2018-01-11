@@ -12,7 +12,13 @@ function PairsPopover({ pairs, lastUpdated }) {
       interactionKind={PopoverInteractionKind.CLICK}
       placement="bottom-start"
       popoverClassName="pairs-popover">
-      <AnchorButton rightIconName="caret-down" text="Trading Pairs" />
+      <AnchorButton
+        title={`Ticker last updated: ${(lastUpdated &&
+          lastUpdated.toLocaleTimeString()) ||
+          'never'}`}
+        rightIconName="caret-down"
+        text="Tokens"
+      />
     </PopoverBlockingScroll>
   );
 }
