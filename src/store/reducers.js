@@ -26,7 +26,7 @@ function ticker(
     case REQUEST_TICKER:
       return { ...state, lastRequested: action.date };
     case WS_ACTIONS.WS_MARKET:
-      if (!!action.payload.returnTicker) {
+      if (action.payload.returnTicker) {
         const data = Object.values(action.payload.returnTicker).reduce(
           (memo, pair) => {
             memo[pair.tokenAddr] = pair;

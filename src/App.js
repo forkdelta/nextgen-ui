@@ -44,7 +44,7 @@ class App extends Component {
         <div id="content">
           <p>{websocket.status}</p>
           <p>
-            {(!!tickerLastUpdated &&
+            {(tickerLastUpdated &&
               new Date(tickerLastUpdated.getTime()).toTimeString()) ||
               'never'}
           </p>

@@ -14,9 +14,9 @@ function PairsTable({
   return (
     <ReactTable
       columns={COLUMNS}
-      className={`-striped -highlight ${!!className ? className : ''}`}
+      className={`-striped -highlight ${className ? className : ''}`}
       getTrProps={(state, rowInfo, column, instance) => ({
-        onClick: e => console.log('A row was clicked!', rowInfo),
+        onClick: e => onPairSelected && onPairSelected(rowInfo.original.addr)
       })}
       data={Object.values(pairs)}
       defaultPageSize={100}
@@ -81,7 +81,6 @@ const COLUMNS = [
     Cell: ({ value }) =>
       value != null ? (
         <span
-          title={`{value}%`}
           className={value >= 0 ? 'positive' : 'negative'}>
           {formatPercentageChange(value)}
         </span>
