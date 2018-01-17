@@ -3,11 +3,16 @@ import { AnchorButton, PopoverInteractionKind } from '@blueprintjs/core';
 
 import PairsTable from './PairsTable';
 import PopoverBlockingScroll from '../common/PopoverBlockingScroll';
+import PairsFilterBox from './PairsFilterBox';
 
 function PairsPopover({ pairs, lastUpdated }) {
   return (
     <PopoverBlockingScroll
-      content={<PairsTable pairs={pairs} lastUpdated={lastUpdated} />}
+      content={
+        <PairsFilterBox pairs={pairs}>
+          <PairsTable lastUpdated={lastUpdated} />
+        </PairsFilterBox>
+      }
       inline={false}
       interactionKind={PopoverInteractionKind.CLICK}
       placement="bottom-start"
