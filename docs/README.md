@@ -5,6 +5,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 ## Table of Contents
 
+- [Setting Up for Development](#setting-up-for-development)
 - [Updating to New Releases](#updating-to-new-releases)
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
@@ -93,6 +94,16 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
   - [Moment.js locales are missing](#momentjs-locales-are-missing)
 - [Sending Feedback on `create-react-app` Project](#sending-feedback-on-create-react-app-project)
+
+## Setting Up for Development
+You will need:
+* Node >= 6
+* npm 5
+
+1. Check out this repository.
+2. Navigate to the root of the working copy (where `package.json` is).
+3. Run `npm install -g npm && yarn`. This will install all necessary dependencies.
+4. Run `yarn start`. This will start the development server and open the app in browser.
 
 ## Updating to New Releases
 
