@@ -92,7 +92,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [`npm run build` fails on Heroku](#npm-run-build-fails-on-heroku)
   - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
   - [Moment.js locales are missing](#momentjs-locales-are-missing)
-- [Sending Feedback on `create-react-app` Project](#sending-feedback)
+- [Sending Feedback on `create-react-app` Project](#sending-feedback-on-create-react-app-project)
 
 ## Updating to New Releases
 
